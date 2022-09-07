@@ -10,6 +10,7 @@ namespace trabajo
 {
     public partial class Inicio : Form
     {
+        string ruta = @"./registro.txt";
         Carga carga = new Carga();
         public Inicio()
         {
@@ -25,7 +26,6 @@ namespace trabajo
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string ruta = @"./registro.txt";
             if (txtnom.Text != "" && txtap.Text != "" && txtpuesto.Text != "" && txtdni.Text != "") 
             {
                 if (File.Exists(ruta)) {
@@ -81,7 +81,16 @@ namespace trabajo
 
         private void contar_Click(object sender, EventArgs e)
         {
-            canttxt.Text = Carga.Contar();
+
+             if (File.Exists(ruta))
+            {
+                canttxt.Text = Carga.Contar();
+            }
+             else
+            {
+                MessageBox.Show("no se creo el archivo con empleados.");
+            }
+            
         }
     }
 }
